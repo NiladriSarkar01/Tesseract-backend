@@ -1,5 +1,5 @@
 import cloudinary from "../lib/cloudinary.js";
-import Application from "../models/Application.models.js";
+import Application from "../models/application.models.js";
 import ApplicationCounter from "../models/applicationCounter.js";
 
 const VALID_EVENTS = [
