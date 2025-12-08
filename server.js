@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://tesseract-two.vercel.app/",
+    origin: "https://tesseract-two.vercel.app",
     credentials: true,
   })
 );
