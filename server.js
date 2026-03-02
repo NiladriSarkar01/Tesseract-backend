@@ -21,9 +21,10 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://tesseract-two.vercel.app",
+    origin: "https://www.tesseract-gnit.online",
+    // origin: "http://localhost:5173",
     credentials: true,
-  })
+  }),
 );
 
 app.use("/api/auth", authRoutes);
