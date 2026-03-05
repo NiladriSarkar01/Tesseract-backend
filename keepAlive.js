@@ -1,7 +1,9 @@
 export const startKeepAlive = () => {
   const ping = async () => {
     try {
-      const res = await fetch("https://your-api-url.com/health");
+      const res = await fetch(
+        "https://tesseract-backend-j00k.onrender.com/health",
+      );
 
       console.log("KeepAlive Ping:", res.status);
     } catch (error) {
