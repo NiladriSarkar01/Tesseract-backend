@@ -27,6 +27,10 @@ app.use(
   }),
 );
 
+app.get("/api/health", (req, res) => {
+  return res.status(200).json({ success: true, message: "ok" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/application", applicationRoutes);
 app.use("/api/contact", contactRoutes);
