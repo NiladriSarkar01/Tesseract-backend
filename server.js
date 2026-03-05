@@ -8,6 +8,7 @@ import authRoutes from "./src/routes/auth.routes.js";
 import connectDB from "./src/lib/db.js";
 import applicationRoutes from "./src/routes/application.routes.js";
 import contactRoutes from "./src/routes/contact.routes.js";
+import { startKeepAlive } from "./keepAlive.js";
 
 dotenv.config();
 
@@ -42,6 +43,8 @@ async function startServer() {
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
+
+      startKeepAlive();
     });
   } catch (error) {
     console.error("Failed to start server:", error);
