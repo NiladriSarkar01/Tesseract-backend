@@ -3,34 +3,45 @@ import Application from "../models/application.models.js";
 import ApplicationCounter from "../models/applicationCounter.js";
 
 const VALID_EVENTS = [
-  "FIGMA",
-  "LINE FOLLOWER",
-  "PHOTO STORY",
-  "TREASURE HUNT",
-  "CARROM",
-  "CAPTURE THE FLAG",
-  "PAINTBALL",
-  "LAP RACE",
-  "E-FOOTBALL",
-  "MODEL DISPLAY",
-  "TERRANOVA",
-  "NAVIN VIDYARTHI",
+  // "FIGMA",
+  // "GRAFFITI",
+  // "DRONE",
+  // "PAINTBALL",
+  // "LAP RACE",
+  // "NAVIN VIDYARTHI",
+
+  //robotics
   "ROBO WAR (8 KG)",
-  "CHESS",
-  "TECH QUIZ",
-  "SUPER CODER",
+  "ROBO WAR (15 KG)",
+  "TERRANOVA",
+  "LINE FOLLOWER",
+  "MODEL VISION",
   "ROBO SOCCER",
-  "PHOTOGRAPHY",
-  "GRAFFITI",
-  "DRONE",
+
+  //coding
+  "SUPER CODER",
+  "CAPTURE THE FLAG",
+
+  //gaming
+  "DIGITAL KICKOFF",
   "BGMI",
+
+  //indoor game
+  "TECH ARENA CHESS",
+  "CARROMACT",
+
+  //miscellaneous
+  "NARRATIVE LENS",
+  "THE NEXUS TRANSMUTATION",
+  "QUIZZARACT",
+  "FRAME WAR",
 ];
 
 async function generateDRPId() {
   const counter = await ApplicationCounter.findOneAndUpdate(
     { name: "DRP" },
     { $inc: { value: 1 } },
-    { new: true, upsert: true }
+    { new: true, upsert: true },
   );
 
   return `DRP-${String(counter.value).padStart(5, "0")}`;
@@ -58,10 +69,10 @@ export const createApplication = async (req, res) => {
       event,
       eventId,
       paymentMode,
-      paymentProof,
+      // paymentProof,
       registrationType,
       teamName,
-      teamMembers
+      teamMembers,
     );
 
     if (
@@ -212,7 +223,7 @@ export const changeStatus = async (req, res) => {
           status: status,
         },
       },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     return res.status(200).json({

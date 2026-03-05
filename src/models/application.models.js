@@ -68,7 +68,7 @@ const ApplicationSchema = new mongoose.Schema(
   },
   {
     timestamps: true, // adds createdAt & updatedAt
-  }
+  },
 );
 
 export default mongoose.model("Application", ApplicationSchema);
