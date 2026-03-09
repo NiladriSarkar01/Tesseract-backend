@@ -19,7 +19,7 @@ const VALID_EVENTS = [
   "ROBO SOCCER",
 
   //coding
-  "SUPER CODER",
+  "SUPER CODERS",
   "CAPTURE THE FLAG",
 
   //gaming
