@@ -90,7 +90,6 @@ export const createApplication = async (req, res) => {
         .json({ success: false, message: "All the fields are required" });
 
     if (
-      !VALID_EVENTS.includes(event) ||
       !["online", "offline"].includes(paymentMode) ||
       !["solo", "team"].includes(registrationType)
     ) {
