@@ -89,12 +89,12 @@ export const createApplication = async (req, res) => {
         .status(400)
         .json({ success: false, message: "All the fields are required" });
 
-    if (
-      !["online", "offline"].includes(paymentMode) ||
-      !["solo", "team"].includes(registrationType)
-    ) {
-      return res.status(400).json({ success: false, message: "Invalid Data." });
-    }
+    // if (
+    //   !["online", "offline"].includes(paymentMode) ||
+    //   !["solo", "team"].includes(registrationType)
+    // ) {
+    //   return res.status(400).json({ success: false, message: "Invalid Data." });
+    // }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
