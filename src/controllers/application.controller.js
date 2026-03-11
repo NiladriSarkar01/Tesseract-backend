@@ -62,19 +62,7 @@ export const createApplication = async (req, res) => {
       teamName,
       teamMembers,
     } = req.body;
-
-    console.log(
-      name,
-      email,
-      phone,
-      event,
-      eventId,
-      paymentMode,
-      // paymentProof,
-      registrationType,
-      teamName,
-      teamMembers,
-    );
+    console.log(req.body);
 
     if (
       !name ||
