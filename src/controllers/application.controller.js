@@ -62,7 +62,6 @@ export const createApplication = async (req, res) => {
       teamName,
       teamMembers,
     } = req.body;
-    console.log(req.body);
 
     if (
       !name ||
