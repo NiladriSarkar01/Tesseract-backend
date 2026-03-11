@@ -7,10 +7,11 @@ import {
   getContact,
   changeStatus,
 } from "../controllers/contact.controller.js";
+import { queryProtection } from "../lib/security.js";
 
 const contactRoutes = express.Router();
 
-contactRoutes.post("/create", createContact);
+contactRoutes.post("/create", ...queryProtection, createContact);
 
 contactRoutes.get("/get", protectRoute, getContact);
 

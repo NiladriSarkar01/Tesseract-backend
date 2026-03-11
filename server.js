@@ -1,7 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+
+import { PORT } from "./src/config/env.js";
 
 import authRoutes from "./src/routes/auth.routes.js";
 
@@ -9,12 +10,9 @@ import connectDB from "./src/lib/db.js";
 import applicationRoutes from "./src/routes/application.routes.js";
 import contactRoutes from "./src/routes/contact.routes.js";
 import { startKeepAlive } from "./keepAlive.js";
-
-dotenv.config();
+import { globalLimiter } from "./src/lib/security.js";
 
 const app = express();
-
-const PORT = process.env.PORT;
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -22,11 +20,17 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://www.tesseract-gnit.online",
+    origin: [
+      "https://www.tesseract-gnit.online",
+      "http://localhost:5173",
+      "https://tesseract-two.vercel.app",
+    ],
     // origin: "http://localhost:5173",
     credentials: true,
   }),
 );
+
+app.use(globalLimiter);
 
 app.get("/health", (req, res) => {
   return res.status(200).json({ success: true, message: "ok" });

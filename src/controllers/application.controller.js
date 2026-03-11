@@ -1,3 +1,4 @@
+import { NODE_ENV } from "../config/env.js";
 import cloudinary from "../lib/cloudinary.js";
 import Application from "../models/application.models.js";
 import ApplicationCounter from "../models/applicationCounter.js";
@@ -190,7 +191,7 @@ export const getApplications = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+      error: NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };
@@ -235,7 +236,7 @@ export const changeStatus = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+      error: NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };

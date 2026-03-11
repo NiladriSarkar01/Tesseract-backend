@@ -7,10 +7,11 @@ import {
   createApplication,
   getApplications,
 } from "../controllers/application.controller.js";
+import { registrationProtection } from "../lib/security.js";
 
 const applicationRoutes = express.Router();
 
-applicationRoutes.post("/create", createApplication);
+applicationRoutes.post("/create", ...registrationProtection, createApplication);
 
 applicationRoutes.get("/get", protectRoute, getApplications);
 
