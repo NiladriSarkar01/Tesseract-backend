@@ -27,7 +27,7 @@ import { TURNSTILE_SECRET } from "../config/env.js";
  */
 export const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minute window
-  max: 10,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
