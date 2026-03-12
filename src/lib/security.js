@@ -105,8 +105,7 @@ async function verifyCaptcha(token) {
         body: JSON.stringify({ secret: TURNSTILE_SECRET, response: token }),
       },
     );
-    const data = await response.json();
-    console.log("[Turnstile] Response:", JSON.stringify(data)); // 👈 add this
+    const data = await response.json(); // 👈 add this
     return data.success === true;
   } catch (err) {
     console.error("[Turnstile] Error:", err.message);
@@ -138,7 +137,7 @@ async function captchaMiddleware(req, res, next) {
  * Use this on your POST /login route.
  * Applies: IP rate limiting only (no CAPTCHA)
  */
-export const loginProtection = [loginLimiter];
+export const loginProtection = [loginLimiter, captchaMiddleware];
 
 /**
  * Use this on your POST /register route.
@@ -150,4 +149,4 @@ export const registrationProtection = [registrationLimiter, captchaMiddleware];
  * Use this on your POST /query route.
  * Applies: IP rate limiting only (no CAPTCHA needed for reads)
  */
-export const queryProtection = [queryLimiter];
+export const queryProtection = [queryLimiter, captchaMiddleware];

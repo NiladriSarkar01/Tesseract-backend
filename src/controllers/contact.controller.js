@@ -5,7 +5,7 @@ async function generateQRPId() {
   const counter = await QueryCounter.findOneAndUpdate(
     { name: "QRP" },
     { $inc: { value: 1 } },
-    { new: true, upsert: true }
+    { new: true, upsert: true },
   );
 
   return `QRP-${String(counter.value).padStart(5, "0")}`;
@@ -48,7 +48,6 @@ export const getContact = async (req, res) => {
     const obj = JSON.parse(data);
 
     const { page = 1, status, search } = obj;
-    console.log(page, search, status);
 
     const query = {};
 
@@ -122,7 +121,7 @@ export const changeStatus = async (req, res) => {
           status: status,
         },
       },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     return res.status(200).json({

@@ -109,7 +109,6 @@ export const createApplication = async (req, res) => {
 
     const newApplication = new Application(application);
     const response = await newApplication.save();
-    console.log(response);
 
     return res.status(201).json({
       success: true,
@@ -132,8 +131,6 @@ export const getApplications = async (req, res) => {
 
     const { page = 1, event, status, search } = obj;
     const limit = 20;
-
-    console.log(page, limit, event, status, search);
 
     const query = {};
 
@@ -173,7 +170,7 @@ export const getApplications = async (req, res) => {
       data: applications,
     });
   } catch (error) {
-    console.error("Get Leads Error:", error.message);
+    console.error("Get Applications Error:", error.message);
 
     return res.status(500).json({
       success: false,

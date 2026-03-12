@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
+import { JWT_SECRET } from "../config/env.js";
 
 export const protectRoute = async (req, res, next) => {
   if (!req.cookies) return res.status(401).json({ message: "Unauthorized!" });
   try {
     const token = req.cookies.jwt;
     if (!token) return res.status(401).json({ message: "Unauthorized!" });
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
     if (!decoded) return res.status(401).json({ message: "Unauthorized!" });
 
     const user = await User.findById(decoded.userId).select("-password");

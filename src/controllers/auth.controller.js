@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
 
   try {
     const user = await User.findOne({ email });
@@ -38,8 +37,6 @@ export const logout = (req, res) => {
 
 export const checkAuth = (req, res) => {
   try {
-    console.log(req.user);
-
     res.status(200).json(req.user);
   } catch (error) {
     console.log("Error checking auth: " + error.message);
