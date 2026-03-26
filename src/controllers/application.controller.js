@@ -154,7 +154,8 @@ export const getApplications = async (req, res) => {
     const skip = (Number(page) - 1) * Number(limit);
 
     const [applications, total] = await Promise.all([
-      Application.find(query).skip(skip).limit(Number(limit)),
+      // Application.find(query).skip(skip).limit(Number(limit)),
+      Application.find(query),
       Application.countDocuments(query),
     ]);
 
